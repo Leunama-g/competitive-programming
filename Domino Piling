@@ -1,0 +1,22 @@
+import * as readline from 'readline';
+
+let rl = readline.createInterface(process.stdin, process.stdout);
+
+
+function maxdomino( M : number, N : number ) : number {
+    let max : number = 0;
+    while(M > 0){
+        if(M > 1)
+            max += N
+        else
+            max += Math.floor(N / 2);
+        M-=2
+    }
+    
+    return max;
+}
+
+rl.question('', (answer : string) => {
+    let values = answer.split(' ');
+    console.log(maxdomino(Number(values[0]), Number(values[1])));
+})
