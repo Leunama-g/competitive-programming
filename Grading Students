@@ -1,0 +1,12 @@
+function gradingStudents(grades: number[]): number[] {
+    for(let x = 0; x <= grades.length; x++){
+        //checks to see if less than 38
+        if(grades[x] >= 38) {
+            let nextMultipleOfFive = (Math.floor(grades[x] / 5) + 1) * 5;
+            if((nextMultipleOfFive - grades[x]) < 3){
+                grades[x] = nextMultipleOfFive;
+            }
+        }
+    }
+    return grades;
+}
