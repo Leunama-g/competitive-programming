@@ -1,0 +1,9 @@
+function countingSort(arr: number[]): number[] {
+    let result: number[] = new Array(100).fill(0);
+
+    arr.forEach((value) => {
+        result[value]++;
+    })
+
+    return result;
+}
