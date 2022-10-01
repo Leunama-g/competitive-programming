@@ -1,0 +1,18 @@
+function sortColors(nums: number[]): void {
+
+    let lastModIndex: number = 0;
+    let temp: number;
+
+    for(let i = 0; i < 3; i++){
+        for(let j = lastModIndex; j < nums.length; j++){
+            if(nums[j] == i){
+                temp = nums[lastModIndex];
+                nums[lastModIndex] = nums[j];
+                nums[j] = temp;
+
+                lastModIndex++;
+            }
+                
+        }
+    }
+};
