@@ -1,0 +1,15 @@
+function targetIndices(nums: number[], target: number): number[] {
+    let result: number[] = []; 
+    nums.sort((a: number, b: number) => {
+        return a > b ? 1 : -1;
+    });
+
+    for(let i = 0; i < nums.length; i++){
+        if( nums[i] == target)
+            result.push(i);
+        else if(nums[i] >= target)
+            break;
+    }
+
+    return result;
+};
