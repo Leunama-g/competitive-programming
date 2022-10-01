@@ -1,0 +1,18 @@
+function kClosest(points: number[][], k: number): number[][] {
+    let result: number[][]= []
+
+    let close = (x: number,y: number) : number => {
+        let val = Math.sqrt(Math.pow(x,2) + Math.pow(y,2));
+        console.log(val);
+        return val
+    }
+
+    points.sort((a: number[],b: number[]) : number=> {
+        return close(a[0],a[1]) > close(b[0],b[1]) ? 1 : -1;
+    })
+
+    for(let i = 0; i < k; i++){
+        result.push(points[i]);
+    }
+    return result;
+};
