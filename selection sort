@@ -1,0 +1,30 @@
+int select(int arr[], int i)
+{
+        int min = i % 1000;
+
+        int size = i / 1000;       
+
+        for (int j = min; j < size; j++) {
+            if (arr[min] > arr[j])
+                min = j;
+        }
+        return min;
+    }
+
+
+    void selectionSort(int arr[], int n)
+    {
+        int temp, minIndex, val = (n * 1000);
+
+        for (int i = 0; i < n; i++) {
+            val += i;
+            
+            minIndex = select(arr, val);
+            
+            temp = arr[i];
+            arr[i] = arr[minIndex];
+            arr[minIndex] = temp;
+
+            val -= i;
+        }
+    }
