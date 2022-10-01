@@ -1,0 +1,16 @@
+function smallerNumbersThanCurrent(nums: number[]): number[] {
+    let result: number[] = [];
+    let sorted: number[] = [...nums]
+    sorted.sort((a: number, b: number) => {
+        return a > b ? 1 : -1;
+      });
+    for(let j = 0; j < sorted.length; j++){
+        for (let i = 0; i < sorted.length; i++) {
+        if (sorted[i] == nums[j]){
+            result.push(i);
+            break;
+        }
+        }
+    }    
+    return result
+};
