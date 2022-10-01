@@ -1,0 +1,14 @@
+function sortSentence(s: string): string {
+    let result: string = "";
+
+    let arr = s.split(' ');
+
+    for(let i=0; i< arr.length; i++){
+        arr.forEach((val) => {
+            if(i + 1 == Number(val[val.length - 1]))
+                    result += (val.slice(0,(val.length - 1)) + " ")  
+        })
+    }
+
+    return result.trimEnd();
+};
