@@ -1,0 +1,13 @@
+function kthLargestNumber(nums: string[], k: number){
+    let arrs: bigint[] = new Array(nums.length);
+ 
+    for(let i = 0; i < nums.length; i++){
+        arrs[i] = BigInt(nums[i]);
+    }
+
+    arrs.sort( (a,b) => {
+       return a > b ? 1 : -1;
+    })
+
+    return arrs[arrs.length - k].toString();
+};
