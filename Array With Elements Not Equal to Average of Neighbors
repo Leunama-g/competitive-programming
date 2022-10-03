@@ -1,0 +1,20 @@
+function rearrangeArray(nums: number[]): number[] {
+    let result: number[] = new Array(nums.length);
+
+    nums.sort( ( a, b) => {
+        return a > b ? 1 : -1;
+    })
+
+    let lastindex: number;
+
+    for(let i = 0, j = 0; i < nums.length; i+=2, j++){
+        result[i] = nums[j];
+        lastindex = j + 1;
+    }
+
+    for(let i = 1, p = lastindex!; i < nums.length; i+=2, p++){
+        result[i] = nums[p];
+    }
+
+    return result;
+};
