@@ -1,0 +1,44 @@
+class Solution {
+    public:
+        std::vector<int> findOriginalArray(std::vector<int>& changed) {
+
+            std::vector<int> result;
+
+            if (changed.size() % 2 == 0) {
+                std::unordered_map<int, int> numberCount;
+
+                std::sort(changed.begin(), changed.end());
+
+                for (int i = 0; i < changed.size(); i++) {
+                    if (numberCount[changed[i]] == NULL)
+                        numberCount[changed[i]] = 1;
+                    else
+                        numberCount[changed[i]]++;
+                }
+
+                for (int i = 0; i < changed.size(); i++) {
+
+                    if (changed[i] == 0) {
+                        if (numberCount[0] >= 2) {
+                            result.push_back(0);
+                            numberCount[0] -= 2;
+                        }
+                    }
+                    else {
+                        if (numberCount[changed[i] * 2] != NULL && numberCount[changed[i] * 2] > 0 && numberCount[changed[i]] > 0) {
+                            numberCount[changed[i]]--;
+                            numberCount[changed[i] * 2]--;
+                            result.push_back(changed[i]);
+                        }
+                    }
+                }
+
+                if (result.size() * 2 != changed.size())
+                    return {}
+
+            }
+            return result;
+
+            
+        }
+    };
