@@ -1,0 +1,7 @@
+int main() {
+    double h, w, a;
+    std::cin >> h;
+    std::cin >> w;
+    std::cin >> a;
+    printf("%.0lf", (std::ceil(h / a) * std::ceil(w / a)));
+}
