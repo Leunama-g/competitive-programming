@@ -1,0 +1,97 @@
+class MyCircularDeque {
+        struct node {
+            node* parent = NULL;
+            node* child = NULL;
+            int val = 0;
+        };
+    private:
+        int size;
+        int fill;
+        MyCircularDeque::node* front;
+        MyCircularDeque::node* back;
+    public:
+        MyCircularDeque(int k) {
+            size = k;
+            fill = 0;
+            front = NULL;
+            back = NULL;
+        }
+
+        bool insertFront(int value) {
+            if (!isFull()) {
+                node* val = new node;
+                val->val = value;
+                if (!isEmpty()) {
+                    front = back = val;
+                }
+                else {
+                    val->child = front;
+                    front->parent = val;
+                    front = val;
+                }
+                fill++;
+                return true;
+            }
+            return false;
+        }
+
+        bool insertLast(int value) {
+            if (!isFull()) {
+                node* val = new node;
+                val->val = value;
+                if (!isEmpty())
+                    front = back = val;
+                else {
+                    val->parent = back;
+                    back->child = val;
+                    back = val;
+                }
+                fill++;
+                return true;
+            }
+            return false;
+        }
+
+        bool deleteFront() {
+            if (!isEmpty()) {
+                node* buff = front;
+                front = front->child;
+                delete buff;
+                fill--;
+                return true;
+            }
+            return false;
+
+        }
+
+        bool deleteLast() {
+            if (!isEmpty()) {
+                node* buff = back;
+                back = back->parent;
+                delete buff;
+                fill--;
+                return true;
+            }
+            return false;
+        }
+
+        int getFront() {
+            if(!isEmpty())
+                return front->val;
+            return -1;
+        }
+
+        int getRear() {
+            if (!isEmpty())
+                return back->val;
+            return -1;
+        }
+
+        bool isEmpty() {
+            return fill == 0;
+        }
+
+        bool isFull() {
+            return fill == size;
+        }
+    };
