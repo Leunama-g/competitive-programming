@@ -1,0 +1,29 @@
+class MinStack {
+    private:
+        std::stack<int> st;
+        std::vector<int> min;
+    public:
+        MinStack() {}
+
+        void push(int val) {
+            if (st.empty())
+                min.push_back(val);
+            else
+                min.push_back(std::min(min[min.size() - 1], val));
+            st.push(val);
+            val;
+        }
+
+        void pop() {
+            st.pop();
+            min.pop_back();
+        }
+
+        int top() {
+            return st.top();
+        }
+
+        int getMin() {
+            return min[min.size() - 1];
+        }
+    };
