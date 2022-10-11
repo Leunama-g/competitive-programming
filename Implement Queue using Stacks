@@ -1,0 +1,32 @@
+class MyQueue {
+    private:
+        std::stack<int> q, buffer;
+    public:
+        MyQueue() {}
+
+        void push(int x) {
+            while (q.size() != 0) {
+                buffer.push(q.top());
+                q.pop();
+            }
+            q.push(x);
+            while (buffer.size() != 0) {
+                q.push(buffer.top());
+                buffer.pop();
+            }
+        }
+
+        int pop() {
+            int val = q.top();
+            q.pop();
+            return val;
+        }
+
+        int peek() {
+            return q.top();
+        }
+
+        bool empty() {
+            return q.empty();
+        }
+    };
