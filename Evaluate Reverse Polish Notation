@@ -1,0 +1,33 @@
+class Solution {
+    private:
+        std::stack<long> st;
+    public:
+        int evalRPN(std::vector<std::string>& tokens) {
+            long x, y;
+            for(int i = 0; i < tokens.size(); i++){
+                if(tokens[i] == "+" || tokens[i] == "-" || tokens[i] == "*" || tokens[i] == "/"){
+                    x = st.top();
+                    st.pop();
+                    y = st.top();
+                    st.pop();
+                    switch (tokens[i][0]) {
+                    case '+':
+                        st.push(x + y);
+                        break;
+                    case '-':
+                        st.push(y - x);
+                        break;
+                    case '*':
+                        st.push(x * y);
+                        break;
+                    case '/':
+                        st.push(y / x);
+                        break;
+                    }
+                }
+                else
+                    st.push(std::stoi(tokens[i])); 
+            }
+            return  st.top();
+        }
+    };
