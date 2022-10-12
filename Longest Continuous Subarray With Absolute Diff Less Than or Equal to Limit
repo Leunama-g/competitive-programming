@@ -1,0 +1,27 @@
+class Solution {
+    public:
+        int longestSubarray(std::vector<int>& nums, int limit) {
+            std::deque<int> max, min;
+            int right = 0;
+
+            for (int i = 0; i < nums.size(); i++) {
+                while (!max.empty() && max.back() < nums[i])
+                    max.pop_back();
+                max.push_back(nums[i]);
+
+                while (!min.empty() && min.back() > nums[i])
+                    min.pop_back();
+                min.push_back(nums[i]);
+
+                if (!max.empty() && !min.empty() && max.front() - min.front() > limit) {
+                    if (max.front() == nums[right])
+                        max.pop_front();
+                    if (min.front() == nums[right])
+                        min.pop_front();
+                    right++;
+                }
+            }
+
+            return nums.size() - right;
+        }
+    };
