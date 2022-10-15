@@ -1,0 +1,30 @@
+class Solution {
+        
+    public:
+        struct ListNode {
+            int val;
+            ListNode* next;
+            ListNode() : val(0), next(nullptr) {}
+            ListNode(int x) : val(x), next(nullptr) {}
+            ListNode(int x, ListNode* next) : val(x), next(next) {}
+        };
+        ListNode* deleteDuplicates(ListNode* head) {
+            if (head == nullptr)
+                return nullptr;
+            if (head->next != nullptr && head->val == head->next->val) {
+                int val = head->val;
+                ListNode* buff;
+                while (head != nullptr && head->val == val)
+                {
+                    buff = head;
+                    head = head->next;
+                    delete buff;
+                }
+
+                return deleteDuplicates(head);
+            }
+            else
+                head->next = deleteDuplicates(head->next);
+            return head;
+        }
+    };
