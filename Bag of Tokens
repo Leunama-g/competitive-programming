@@ -1,0 +1,21 @@
+class Solution {
+    public:
+        int bagOfTokensScore(std::vector<int>& tokens, int power) {
+            std::sort(tokens.begin(), tokens.end());
+            int score = 0;
+            int end = tokens.size() - 1;
+            for (int i = 0; i < tokens.size(); i++) {
+                if (score > 0 && power < tokens[i] && i < end) {
+                    score--;
+                    power += tokens[end];
+                    end--;
+                }
+                if (power >= tokens[i]) {
+                    power -= tokens[i];
+                    score++;
+                }
+              
+            }
+            return score;
+        }
+    };
