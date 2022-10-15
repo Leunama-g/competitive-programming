@@ -1,0 +1,21 @@
+class Solution {
+    public:
+        void rotate(std::vector<int>& nums, int k) {
+            int start = 0;
+            std::vector<int> buff(nums.size());
+
+            k = k % nums.size();
+            if(k == 0 || nums.size() == 1) 
+                return;
+
+            while (start < nums.size()) {
+                if (k == nums.size())
+                    k = 0;
+                buff[k] = nums[start];
+                start++;
+                k++;
+            }
+        
+            nums = buff;
+        }
+    };
