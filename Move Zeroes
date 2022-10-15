@@ -1,0 +1,23 @@
+class Solution {
+    public:
+        void moveZeroes(std::vector<int>& nums) {
+            int b;
+            bool first = true;
+            for (int i = 0; i < nums.size(); i++) {
+                if (nums[i] == 0) {
+                    if (first) {
+                        b = i + 1;
+                        first = false;
+                    }
+                    while (b < nums.size() && nums[b] == 0)
+                        b++;
+                    if (b == nums.size())
+                        break;
+                    nums[i] = nums[b];
+                    nums[b] = 0;
+                    b++;
+                }
+
+            }
+        }
+    };
