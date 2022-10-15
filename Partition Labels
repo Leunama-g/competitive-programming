@@ -1,0 +1,24 @@
+class Solution {
+    public:
+        std::vector<int> partitionLabels(std::string s) {
+            std::unordered_map<char, int> mp;
+            int start = 0, end = s.length() - 1, sum = 0;
+            std::vector<int> ans;
+            char leader = ' ';
+            while (start < s.length()) {
+                if (!mp[s[start]]) {
+                    while (end > start && s[end] != s[start])
+                        end--;
+                    mp[s[start]] = end;
+                }
+                leader = mp[leader] > mp[s[start]] ? leader : s[start];
+                if (start == mp[leader]) {
+                    ans.push_back(start + 1 - sum);
+                    sum += start + 1 - sum;
+                }
+                start++;
+                end = s.length() - 1;
+            }
+            return ans;
+        }
+    };
